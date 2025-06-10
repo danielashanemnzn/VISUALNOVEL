@@ -1,12 +1,16 @@
 ﻿################################################################################
 #  CHARACTER DEFINITIONS
 ################################################################################
-define jus = Character("Justine", color="#e67e22")
-define g   = Character("Guard",   color="#3498db")
-define kim = Character("Kim",     color="#e84393")
+define jus = Character("Justine", color="#e67e22", who_style="namebox")
+define g   = Character("Guard",   color="#3498db", who_style="sec_namebox")
+define kim = Character("Kim",     color="#e84393", who_style="sec_namebox")
 define c   = Character("Carl",    color="#80c4ff")
 define n = Character("Nurse", color="#E9967A")
-
+define m = Character("Mae", color="#E23A32")
+define s = Character("Sophie", color="#A23A32")
+define l = Character("Lyn", color="#AB3A32" )
+define e = Character("Ella", color= "#3A3AB4")
+define v = Character("Vidal", color="#3A3AB4")
 
 ################################################################################
 #  TRANSFORMS
@@ -16,6 +20,53 @@ transform justine_bottom_left:
     yalign 1.0        # bottom
     anchor (0.0, 1.0) # feet on the floor
     zoom 0.8          # tweak if she’s still too big
+
+transform kim_bottom_right:
+    xalign 0.75       # left edge
+    yalign 1.05       # bottom
+    anchor (0.0, 1.0) # feet on the floor
+    zoom 0.8          # tweak if she’s still too big
+
+transform justine_bottom_center:
+    xalign 0.3     # left edge
+    yalign 0.9       # bottom
+    anchor (0.0, 1.0) # feet on the floor
+    zoom 0.7          # tweak if she’s still too big
+
+transform kim_bottom_center:
+    xalign 0.5
+    yalign 1.05
+    anchor (0.05, 1.1)
+    zoom 0.8
+
+transform kim_bottom_left:
+    xalign 0.2
+    yalign 1.05
+    anchor (0.05, 1.1)
+    zoom 0.8
+
+transform guard_bottom_right:
+    xalign 0.75       # left edge
+    yalign 1.1        # bottom
+    anchor (0.0, 1.0) # feet on the floor
+    zoom 0.8          # tweak if she’s still too big
+
+transform mae_bottom_center:
+    xalign 0.3     # left edge
+    yalign 0.9       # bottom
+    anchor (0.0, 1.0) # feet on the floor
+    zoom 0.7          # tweak if she’s still too big
+
+transform sophie_bottom_center:
+    xalign 0.5
+    yalign 0.9
+    anchor (0.0, 1.0)
+
+transform mae_bottom_left:
+    xalign 0.0        # left edge
+    yalign 1.0        # bottom
+    anchor (0.0, 1.0) # feet on the floor
+    zoom 0.7          # tweak if she’s still too big
 
 ################################################################################
 #  IMAGE_DEFINITIONS+-
@@ -52,16 +103,38 @@ image bg_stair4= "images/first_stair4.jpg"
 image floor1_midhallwayleft = "images/floor1_midhallwayleft.jpg"
 image floor1_hallwayleft = "images/floor1_hallwayleft.jpg"
 
-# __GARDEN__ (make sure these files exist in /game/imgaes/)
+# __GARDEN__ and __EXIT__ (make sure these files exist in /game/imgaes/)
 image bg_garden = "images/garden.jpg"
-image view_cat = "images/view_cat.jpg"
+image bg_garden_cat = "images/view_cat.jpg"
 image bg_garden1 = "images/garden1.jpg"
 image bg_garden2 = "images/garden2.jpg"
 image bg_garden3 = "images/garden3.jpg"
+image bg_back_garden1 = "images/back_garden1.jpg"
+image bg_exit1 = "images/exit1.jpg"
+image bg_exit2 = "images/exit2.jpg"
+image bg_exit3 = "images/exit3.jpg"
+image bg_exit4 = "images/exit4.jpg"
+image bg_exit5 = "images/exit5.jpg"
+image bg_exit6 = "images/exit6.jpg"
+image bg_exit7 = "images/exit7.jpg"
+image bg_exit8 = "images/exit8.jpg"
+image bg_exit9 = "images/exit9.jpg"
+image bg_exit10 = "images/exit10.jpg"
+image bg_fire_exit_inside1 = "images/fire_exit_inside1.jpg"
+image bg_fire_exit_inside2 = "images/fire_exit_inside2.jpg"
+image bg_fire_exit_inside3 = "images/fire_exit_inside3.jpg"
+image bg_fire_exit_inside4 = "images/fire_exit_inside4.jpg"
+image bg_fire_exit_inside5 = "images/fire_exit_inside5.jpg"
 
 
 # _Floor 2__ (make sure these files exist in /game/images/)
 image bg_floor2_halfwayright = "images/floor2_halfwayright.jpg"
+
+#___DOCUMENTS__ PROCESS___
+image doc1 = "images/doc1.jpg"
+image doc2 = "images/doc2.jpg"
+image doc3 = "images/doc3.jpg"
+image doc4 = "images/doc4.jpg"
 
 
 image bg_admin_office = "images/admin_office.jpg"
@@ -73,7 +146,7 @@ image bg_beside_faculty_office = "images/besidefacultyoffice.jpg"
 image bg_cashier_window = "images/cashierwindow.jpg"
 image bg_clinic = "images/clinic.jpg"
 
-image nurse_normal = im.Scale("images/nurse_normal.png", 1200, 1300)
+image nurse_normal = im.Scale("images/nurse_normal.png", 925, 1200)
 
 #_Carl_
 image Carl_normal      = im.Scale("images/Carl_normal.png", 1200, 1350)
@@ -101,17 +174,59 @@ image Justine_scared    = im.Scale("images/Justine_scared.png",         925, 120
 
 #__KIM__
 # Assuming Kim's images are in /game/images/ and you want a similar size to Carl (1200x1300)
-image Kim_normal       = im.Scale("images/kim_normal.png",       1200, 1300)
-image Kim_holdingID    = im.Scale("images/kim_holdingID.png",    1200, 1300)
-image Kim_smiling      = im.Scale("images/kim_smiling.png",      1200, 1300)
-image Kim_talking      = im.Scale("images/kim_talking.png",      1200, 1300)
-image Kim_calling      = im.Scale("images/kim_calling.png",      1200, 1300)
+image Kim_normal       = im.Scale("images/kim_normal.png",       925, 1200)
+image Kim_holdingID    = im.Scale("images/kim_holdingID.png",    925, 1200)
+image Kim_smiling      = im.Scale("images/kim_smiling.png",      925, 1200)
+image Kim_talking      = im.Scale("images/kim_talking.png",      925, 1200)
+image Kim_calling      = im.Scale("images/kim_calling.png",      925, 1200)
 
 #_Guard_
-image Guard normal   = im.Scale("images/guard_normal.png",          1200, 1300)
-image Guard happy    = im.Scale("images/guard_happy_talking.png",   1200, 1300)
-image Guard annoyed  = im.Scale("images/guard_talking_annoyed.png", 1200, 1300)
+image Guard normal   = im.Scale("images/guard_normal.png",          925, 1200)
+image Guard happy    = im.Scale("images/guard_happy_talking.png",   925, 1200)
+image Guard annoyed  = im.Scale("images/guard_talking_annoyed.png", 925, 1200)
 
+
+#_LYN_
+image Lyn_talking           = im.Scale("images/Lyn_talking.png",        925, 1200)
+image Lyn_angry             = im.Scale("images/Lyn_angry.png",        925, 1200)
+image Lyn_Anya_smirk        = im.Scale("images/Lyn_Anya_smirk.png",        925, 1200)
+image Lyn_disgusted         = im.Scale("images/Lyn_disgusted.png",        925, 1200)
+image Lyn_normal            = im.Scale("images/Lyn_normal.png",        925, 1200)
+image Lyn_pouting_talking   = im.Scale("images/Lyn_pouting_talking.png",        925, 1200)
+image Lyn_pouting           = im.Scale("images/Lyn_pouting.png",        925, 1200)
+image Lyn_smug              = im.Scale("images/Lyn_smug.png",        925, 1200)
+image Lyn_talking           = im.Scale("images/Lyn_talking.png",        925, 1200)
+image Lyn_worried           = im.Scale("images/Lyn_worried.png",        925, 1200)
+
+#_ELLA_
+image Ella_grinning         = im.Scale("images/Ella_grinning.png",        925, 1200)
+image Ella_normal           = im.Scale("images/Ella_normal.png",        925, 1200)
+image Ella_smiling          = im.Scale("images/Ella_smiling.png",        925, 1200)
+image Ella_talking          = im.Scale("images/Ella_talking.png",        925, 1200)
+image Ella_whispering       = im.Scale("images/Ella_whispering.png",        925, 1200)
+
+#_VIDAL_
+image Vidal_angry_talking   = im.Scale("images/Vidal_angry_talking.png",    925, 1200)
+image Vidal_angry           = im.Scale("images/Vidal_angry.png",        925, 1200)
+image Vidal_normal          = im.Scale("images/Vidal_normal.png",        925, 1200)
+image Vidal_smiling         = im.Scale("images/Vidal_smiling.png",        925, 1200)
+image Vidal_talking         = im.Scale("images/Vidal_talking.png",        925, 1200)
+
+#_SOPHIE_
+image Sophie_normal         = im.Scale("images/Sophie_normal.png",        925, 1200)
+image Sophie_smiling        = im.Scale("images/Sophie_smiling.png",        925, 1200)
+image Sophie_talkin         = im.Scale("images/Sophie_talking.png",        925, 1200)
+
+#_JORIE_
+image Jorie_normal          = im.Scale("images/Jorie_normal.png",        925, 1200)
+image Jorie_smiling         = im.Scale("images/Jorie_smiling.png",        925, 1200)
+image Jorie_talking         = im.Scale("images/Jorie_talking.png",        925, 1200)
+
+#_MAE_
+image Mae_holding_paper     = im.Scale("images/Mae_holding_paper.png",        925, 1200)
+image Mae_normal            = im.Scale("images/Mae_normal.png",        925, 1200)
+image Mae_smiling           = im.Scale("images/Mae_smiling.png",        925, 1200)
+image Mae_talking           = im.Scale("images/Mae_talking.png",        925, 1200)
 
 
 transform justine_bottom_left:
@@ -129,7 +244,7 @@ default visited_avr          = False
 default visited_admin        = False
 default visited_sas          = False
 default visited_clinic       = False
-default view_cat = False
+default view_cat             = False
 
 
 
@@ -250,13 +365,13 @@ label main_game:
     jus "Wow, hindi ako makapaniwala na malapit na akong umalis sa sintang paaralang ‘to."
 
     # The guard appears
-    show Guard normal at right with dissolve
+    show Guard normal at guard_bottom_right with dissolve
     g "Good morning, iho. Asan yung I.D mo?"
     
     show Justine_talking at justine_bottom_left
     jus "Sorry po kuya, naiwan ko po yung I.D ko."
 
-    show Guard annoyed at right
+    show Guard annoyed at guard_bottom_right with dissolve
     g "Ayy, pasensya na iho pero bawal kang pumasok pag wala kang I.D."
 
     # CHOICE MENU -------------------------------------------------------------
@@ -277,13 +392,14 @@ label go_home:
     show Guard normal
     g "Sa susunod, siguraduhing may I.D ka ha."
 
-    hide Guard normal with dissolve
-    show Justine_normal
+    hide Guard normal at guard_bottom_right with dissolve
+    show Justine_talking
     $ renpy.pause(0.3)
 
     # short inner monologue
     window hide
     show Justine_normal at justine_bottom_left
+    hide Justine_normal
     with None
     $ renpy.pause(0.2)
     window show
@@ -302,37 +418,44 @@ label call_kim:
 
     show Justine_talking at justine_bottom_left
     jus "Ayy ganon po ba, wait lang kuya. Papakuha ko lang I.D ko."
-
+    hide Justine_talking
     # phone sprite
     show Justine_holding_phone at justine_bottom_left
     "Tumawag si Justine sa kanyang kaibigan…"
-
+    hide Justine_holding_phone
     jus "Hi Kim, nasaan ka ngayon?"
     kim "Nasa bahay pa. Bakit?"
     jus "Pwede ka bang dumaan sa bahay ko at kunin ang I.D ko? Naiwan ko eh."
     kim "Sakto, may aasikasuhin din ako sa school. Pupuntahan kita."
 
     "Ilang minuto ang lumipas…"
-    hide Guard normal
-    show Kim_holdingID at right with dissolve
+    hide Guard normal with dissolve
+    show Kim_holdingID at kim_bottom_right with dissolve
     kim "Jas! Eto na I.D mo!"
-    hide Kim_holdingID
+    hide Kim_holdingID with dissolve
 
     show Justine_holding_id at justine_bottom_left
-    show Kim_normal at center with dissolve
+    show Kim_normal at kim_bottom_left with dissolve
     jus "Ayos! Salamat!"
+    hide Kim_normal with dissolve
+    hide Justine_holding_id
 
     
 
     # show guard happy and let them pass
-    show Guard happy at right with dissolve
+    show Guard happy at guard_bottom_right with dissolve
     g "Hmm… sige, pwede na kayong pumasok."
 
     hide Guard happy with dissolve
-    show Justine_happy at justine_bottom_left
+    hide Justine_holding_phone
+    hide Justine_talking
+    hide Justine_normal
+    show Kim_smiling at kim_bottom_center 
+    show Justine_smiling at justine_bottom_center 
     jus "Salamat po, kuya Guard!"
     hide Guard talking
     hide Kim_normal
+    
 
     hide Kim_holdingID with dissolve
     scene bg_guard_house at Transform(xysize=(2580, 1520)) with fade
@@ -386,19 +509,27 @@ label new_building:
 
     # 1) Far view of entrance, Kim & Justine meet
     scene bg_far_view_entrance at Transform(xysize=(2580, 1520)) with fade 
-    show Justine_normal  at justine_bottom_left
-    show Kim_smiling     at right
 
+    show Justine_normal  at justine_bottom_left with dissolve
     jus "Uy, Kim! Saan ka punta?"
+    hide Justine_normal with dissolve
+
+    show Kim_talking at kim_bottom_right with dissolve
     kim "May kukunin lang akong papel sa registrar. Ikaw, lakad ka?"
+    hide Kim_talking with dissolve
+
+    show Justine_normal  at justine_bottom_left with dissolve
     jus "Titingnan ko nga ulit 'yung bagong building — baka milagro, tapos na!"
-    
-    show Kim_talking at right
+    hide Justine_normal with dissolve
+
+    show Kim_talking at kim_bottom_right
     kim "Good luck d'yan! Baka mauna pa tayong mag-retire kaysa matapos ‘yon!"
-    
-    show Kim_smiling at right
+    hide Kim_talking with dissolve
+
+    show Kim_smiling at kim_bottom_right
     kim "Sige, mauna na 'ko. Kita tayo mamaya."
     hide Kim_smiling with dissolve
+
     hide Kim_talking with dissolve
     hide Justine_normal with dissolve
 
@@ -566,6 +697,16 @@ label floor1_right_hall:
     call screen right_hall_menu
     return
 
+label show_three_images:
+    scene floor1_hallwayright at Transform(xysize=(2580, 1520))
+
+    show doc1 at Position(xysize=(50, 100), xpos=0.1, yalign=0.5)
+    show doc2 at Position(xysize=(59, 100), xpos=0.5, yalign=0.5)
+    show doc3 at Position(xysize=(50, 199), xpos=0.5, yalign=0.5)
+    show doc3 at Position(xysize=(50, 100), xpos=0.75, yalign=0.5)
+    pause 
+
+    jump right_hall_forward2
 label clinic_room:
 
     scene bg_clinic at Transform(xysize=(2580, 1520)) with fade
@@ -617,6 +758,131 @@ label right_hall_forward2:
     # Move to a NEW hallway, not back to right_hall
     # or create another label like "deeper_hallway"
 
+label admin:
+    
+    scene bg_clinic at Transform(xysize=(2580, 1520)) with fade
+    show Justine_talking at justine_bottom_left
+
+    jus "Na-alala ko nung gumawa kami ng system para sa finals namin sa comprog"
+    jus "pumunta kami dito para humingi ng permiso na mag-ikot sa campus at mag-picture"
+
+    show Justine_Sighing at justine_bottom_left
+    jus "naka-ilang balik kami dahil may proper procedure pala bago pumunta dito."
+
+    # Start of flashback sequence
+    scene bg_clinic at Transform(xysize=(2580, 1520)) with fade
+    show Mae_talking at center
+    "Kaming dalawa nalang ni Sophie yung papasok sa loob para ipasa yung letter"
+
+    # 1st Attempt
+    scene bg_admin_office at Transform(xysize=(2580, 1520)) with fade
+    show Mae_smiling at left with dissolve
+    show Sophie_smiling at right with dissolve
+    "(Left the office after a few minutes)"
+    hide Mae_smiling with dissolve
+    hide Sophie_smiling 
+
+    scene bg_admin_office at Transform(xysize=(2580, 1520)) with fade
+    show Sophie_talking at right with dissolve
+    s "Guys ulitin daw mali raw yung format ng letter"
+    hide Sophie_talking with dissolve
+
+    show Mae_talking at left with dissolve 
+    m "Ganito raw yung proper format"
+    show Mae_holding_paper at left with dissolve
+
+    # 2nd Attempt
+    scene bg_admin_office at Transform(xysize=(2580, 1520)) with fade
+    show Sophie_talking at right with dissolve
+    show Mae_normal at left with dissolve
+    "left the office after a few minutes"
+
+    scene floor1_hallwayleft at Transform(xysize=(2580, 1520)) with fade
+    show Mae_talking at left with dissolve
+    m "need naman daw ng appointment sa sinta"
+
+    # 3rd Attempt
+    scene bg_admin_office at Transform(xysize=(2580, 1520)) with fade
+    show Sophie_talking at right with dissolve
+    s "Manifesting ma-approve na to"
+    show Mae_normal at left with dissolve
+    "left the office after a few minutes"
+
+    scene floor1_hallwayleft at Transform(xysize=(2580, 1520)) with fade
+    show Mae_talking at mae_bottom_center with dissolve
+    m "Finally! na-approve na rin HAHAHAHA"
+    hide Mae_talking at mae_bottom_center with dissolve
+    # End of Flashback
+    show Justine_laughing at justine_bottom_left with dissolve
+    jus "Haha... naaawa ako sa kanila"
+    hide Justine_laughing at Justine_bottom_left with dissolve
+    
+    # ____CHOICES_____
+    menu:
+        "knock and enter the admin office":
+            jump adm_office1
+        "Just enter the door":
+            jump adm_office2
+
+
+label adm_office1:
+    scene bg_admin_office 
+    show Justine_talking at justine_bottom_left
+    jus "Hello po ma'am vidal"
+
+    show Vidal_talking at right with dissolve
+    v "And you are..?"
+
+    show Justine_talking at justine_bottom_left
+    jus "Justine po ma’am from BSIT 4-1"
+
+    show Vidal_talking at right with dissolve
+    v "Oh why hello Justine, what can I do for you?"
+
+    show Justine_talking at justine_bottom_left
+    jus  " nag-iikot Ikot lang po para sa huling sandali ko as a student of this sintang paaralan"
+
+    show Vidal_talking at right with dissolve
+    v "Kung ganon din ay, enjoyin mo na habang nandito ka"
+
+    show Justine_talking at justine_bottom_left
+    jus "Maraming salamat po"
+
+    return
+
+    jump right_hall_forward2 
+
+label adm_office2:
+
+    scene bg_admin_office 
+    show Vidal_talking at right with dissolve
+    v "Sino ka at bakit ka pumapasok lang ng basta basta?"
+    show Justine_talking at justine_bottom_left
+    jus "uhmmm... Justine ma’am from BSIT 4-1 po"
+    show Vidal_angry_talking at right with dissolve
+    v "Justine!!! Ilang taon ka nang nag-aaral dito pero hindi mo man lang alam ang tamang proseso bago pumasok?"
+    show Justine_scared at justine_bottom_left
+    jus "Sorry po Ma'am Vidal, hindi na po mau-ulit"
+
+    show Vidal_angry_talking at right with dissolve
+    v "Kakatok ka lang ng 3 beses and give your greetings, ganoon ba kahirap yon?"
+
+    show Justine_scared at left with dissolve
+    jus "Maraming salamat po"
+    hide Justine_scared with dissolve
+
+    show Vidal_angry_talking at right with dissolve
+    v "Labas!, marmai pa kaming ginagawa at dadagdag ka pa!!!"
+
+    "Justine was forced out"
+    return 
+
+    jump right_hall_forward2 
+
+    
+
+
+
 label mid:
     scene bg_midstair at Transform(xysize=(2580, 1520)) with fade
     show Justine_Sighing at justine_bottom_left
@@ -645,46 +911,89 @@ label garden:
     show Justine_normal at justine_bottom_left
     jus "Sana makita ko siya ulit"
     hide Justine_normal 
-
+    
 label garden_view_menu:
-    scene bg_garden at Transform(xysize=(2500, 1520)) with fade
+    scene bg_garden at Transform(xysize=(2580, 1520))
     call screen garden_view
 
-label view_cat:
-    
-    if not view_cat:
-        $ view_cat = True
+label garden_view1:
 
-        scene bg_garden1 at Transform(xysize=(2500, 1520)) with fade
-        show Justine_happy at justine_bottom_right
-        jus "Wow! lagi talaga andito tong pusa nato e"
-        jus "Andaming umaamo lagi sa pusa na to"
-
-        scene Justine_confused at justine_bottom_right
-        jus "Makatingin nga sa garden"
-        scene bg_garden2 at Transform(xysize=(2500, 1520)) with fade
-        scene bg_garden3 at Transform(xysize=(2500, 1520)) with fade
-    
-    else:
-        # Only once can visit
-        scene view_cat at Transform(xysize=(2500, 1520)) with fade
-        show Justine_happy at justine_bottom_left
-        jus "Ang cute cute mo talaga mingming!"
-
-    # Return to choice menu after
-    scene bg_garden at Transform(xysize=(2500, 1520)) with fade
-
-
-label cat_view_menu:
     scene bg_garden1 at Transform(xysize=(2500, 1520)) with fade
-    call screen cat_view
+    show Justine_happy at justine_bottom_left
+    jus "Wow! lagi talaga andito tong pusa nato e"
+    jus "Andaming umaamo lagi sa pusa na to"
+
+label garden_view_menu1:
+    scene bg_garden1 at Transform(xysize=(2580, 1520))
+    call screen cat
+label garden_view2:
+
+    scene bg_garden2 at Transform(xysize=(2500, 1520)) with fade
+    pause 1.0
+    scene bg_garden3 at Transform(xysize=(2500, 1520)) with fade
+    pause 1.0
+         
+    jump back_garden_view
+
+label back_garden_view:
+    scene bg_garden3 at Transform(xysize=(2500, 1520))
+    call screen back_garden
+
+label back_garden1:
+    scene bg_back_garden1 at Transform(xysize=(2580, 1520))
+    call screen back_garden_menu1
     
+label right_exit:
+    scene bg_exit1 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit2 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit3 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit4 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit5 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit6 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit7 at Transform(xysize=(2580, 1520)) with fade
+    jump right_exit_menu
+
+label right_exit_menu:
+    scene bg_exit7 at Transform(xysize=(2580, 1520))
+    call screen right_exit_menu1
+
+label outside_exit:    
+    scene bg_exit8 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit9 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    scene bg_exit10 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
+    jump outside_exit_menu
+
+label fire_exit_inside1:
+    scene bg_fire_exit_inside1 at Transform(xysize=(2580, 1520)) with fade
+    scene bg_fire_exit_inside2 at Transform(xysize=(2580, 1520)) with fade
+    scene bg_fire_exit_inside3 at Transform(xysize=(2580, 1520)) with fade
+    scene bg_fire_exit_inside4 at Transform(xysize=(2580, 1520)) with fade
+    scene bg_fire_exit_inside5 at Transform(xysize=(2580, 1520)) with fade
+
+label fire_exit_inside_menu:
+    scene bg_fire_exit_inside5 at Transform(xysize=(2580, 1520)) with fade
+    call screen fire_exit_inside_menu1
 
 
+label outside_exit_menu:
+    scene bg_after_school_gate at Transform(xysize=(2580, 1520)) with fade
+    call screen nav_door_gate
+    
 
 label upstairs:
     scene bg_stair1 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
     scene bg_stair2 at Transform(xysize=(2580, 1520)) with fade
+    pause 1.0
     scene bg_stair3 at Transform(xysize=(2580, 1520)) with fade
     show Justine_Sighing at justine_bottom_left
     jus "Ba yan! Wait nga!"
@@ -705,6 +1014,9 @@ label second_floor_stair1:
     show Justine_laughing at justine_bottom_left
     jus "Haha! Nakakatawa naman!"
 
+label male_bathroom:
+
+
 label right_hall_forward4:
     scene bg_floor2_halfwayright at Transform(xysize=(2500, 1520))
     call screen right_hall_menu3
@@ -722,7 +1034,7 @@ label left_hall:
     hide Justine_Sighing
 
 label floor1_left_hall:
-    scene floor1_hallwayleft at Transform(xysize=(2580, 1520)) with fade
+    scene floor1_hallwayleft at Transform(xysize=(2580, 1520))
     call screen left_hall_menu
     return
 

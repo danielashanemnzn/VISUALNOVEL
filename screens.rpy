@@ -99,13 +99,19 @@ screen say(who, what):
 
     window:
         id "window"
+        # dialog box settings here
 
-        if who is not None:
-
-            window:
-                id "namebox"
-                style "namebox"
-                text who id "who"
+        if who:
+            if who == "???":
+                window:
+                    id "namebox"
+                    style "namebox"
+                    text who id "who"
+            else:
+                window:
+                    id "namebox"
+                    style "namebox"    
+                    text who id "who"
 
         text what id "what"
 
@@ -135,17 +141,26 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Image("gui/textbox.png", xalign=0.3, yalign=1.0)
 
 style namebox:
-    xpos 580
+    xpos 250
     xanchor gui.name_xalign
     xsize 290
-    ypos -143
+    ypos 100
     ysize 400
 
     background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
+
+style sec_namebox is namebox:
+    background "#2d6021"  # dark gray
+    xpos 1380
+    xsize 400
+    ypos 158
+    ysize 400
+    padding (10, 5)
+    color "#1dac39"
 
 style say_label:
     properties gui.text_properties("name", accent=True)
@@ -153,7 +168,7 @@ style say_label:
     yalign 0.5
 
 style say_dialogue:
-    color "#000000"   # Black text
+    color "#237818"   # Black text
     properties gui.text_properties("dialogue")
 
     xpos 620
@@ -1671,6 +1686,14 @@ screen nav_door_gate():
         ypos 940
         textbutton "Campus Grounds" action Jump("new_building")
 
+    # ── Fire Exit ─────────────────────────────────────────────────────────
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 45)
+        xpos 2000      #  ← move this one near the gate sprite
+        ypos 940
+        textbutton "Fire Exit" action Jump("fire_exit_inside_menu")
+
 screen custom_choice_menu():
 
     # background frame for the choice box (optional)
@@ -1696,6 +1719,13 @@ screen custom_choice_menu():
         xpos 1550        #  ← move this one near the gate sprite
         ypos 750
         textbutton "Enter Building" action Jump("enter_buildingcampus")
+
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)      # your textbox BG
+        padding (20, 65)                                 # inner padding
+        xpos 2200     #  ← adjust these two numbers
+        ypos 1200         #  ← until the box sits right over the door
+        textbutton "Walk Back" action Jump("outside_exit_menu")
 
 screen rest_choice_menu():
 
@@ -1792,16 +1822,31 @@ screen right_hall_menu():
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 55)
         xpos 1200
-        ypos 1200
+        ypos 1300
         textbutton "Walk back" action Jump("inside_building")
 
     # ── Move Forward ───────────────────────────────────────────────────────
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 55)
-        xpos 1150
-        ypos 500
+        xpos 1200
+        ypos 700
         textbutton "Walk Further" action Jump("right_hall_forward")
+
+    # ── SAS OFFICE ───────────────────────────────────────────────────────
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 55)
+        xpos 1850
+        ypos 700
+        textbutton "SAS OFFICE" action Jump("right_hall_forward")
+
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 55)
+        xpos 1500
+        ypos 700
+        textbutton "ACAD OFFICE" action Jump("right_hall_forward")
 
 screen right_hall_menu1():
     frame:
@@ -1809,28 +1854,35 @@ screen right_hall_menu1():
         padding (20, 65)                                 # inner padding
         xpos 100        #  ← adjust these two numbers
         ypos 750         #  ← until the box sits right over the door
-        textbutton "Reservation Process" action Jump("reservation_process")
+        textbutton "Admin Office" action Jump("admin")
+
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 65)                                 # inner padding
+        xpos 500       #  ← adjust these two numbers
+        ypos 800    #  ← until the box sits right over the door
+        textbutton "Process" action Jump("show_three_images")
 
     # ── Academic Paper Process the choice ─────────────────────────────────────────────────────────
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)
-        xpos 1500      #  ← move this one near the gate sprite
+        xpos 2100     #  ← move this one near the gate sprite
         ypos 750
-        textbutton "Check Academic Process" action Jump("academic_process")
+        textbutton "Director's Office" action Jump("academic_process")
     
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)
         xpos 1200        #  ← move this one near the gate sprite
-        ypos 700
+        ypos 750
         textbutton "Walk Further" action Jump("mid")
 
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)
-        xpos 1300   #  ← move this one near the gate sprite
-        ypos 1200
+        xpos 1250  #  ← move this one near the gate sprite
+        ypos 1300
         textbutton "Walk Back" action Jump("floor1_right_hall")
 
 
@@ -1875,38 +1927,92 @@ screen garden_view():
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)                                 # inner padding
-        xpos 800    #  ← adjust these two numbers
+        xpos 900   #  ← adjust these two numbers
         ypos 900#  ← until the box sits right over the door
-        textbutton "Garden" action Jump("garden")
+        textbutton "Garden" action Jump("garden_view1")
     
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)                                 # inner padding
-        xpos 1000      #  ← adjust these two numbers
+        xpos 1800      #  ← adjust these two numbers
         ypos 900        #  ← until the box sits right over the door
-        textbutton "Exit" action Jump("exit")
+        textbutton "Exit" action Jump("right_exit")
 
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)                                 # inner padding
-        xpos 3000      #  ← adjust these two numbers
+        xpos 1250     #  ← adjust these two numbers
         ypos 1280        #  ← until the box sits right over the door
         textbutton "Walk Back" action Jump("right_hall_forward3")
 
-screen cat_view():
+screen cat():
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)                                 # inner padding
-        xpos 1100      #  ← adjust these two numbers
+        xpos 800    #  ← adjust these two numbers
+        ypos 900#  ← until the box sits right over the door
+        textbutton "Walk further" action Jump("back_garden_view")
+        
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 65)                                 # inner padding
+        xpos 1250     #  ← adjust these two numbers
         ypos 1280        #  ← until the box sits right over the door
-        textbutton "View Cat" action Jump("view_cat")
+        textbutton "Walk Back" action Jump("garden_view_menu")
+
+screen back_garden():
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 65)                                 # inner padding
+        xpos 800    #  ← adjust these two numbers
+        ypos 900#  ← until the box sits right over the door
+        textbutton "Walk further" action Jump("back_garden1")
 
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 65)                                 # inner padding
-        xpos 1100      #  ← adjust these two numbers
+        xpos 1250     #  ← adjust these two numbers
         ypos 1280        #  ← until the box sits right over the door
-        textbutton "Walk further" action Jump("walk_further")
+        textbutton "Walk Back" action Jump("garden_view_menu1")
+
+screen back_garden_menu1():
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 65)                                 # inner padding
+        xpos 800    #  ← adjust these two numbers
+        ypos 900#  ← until the box sits right over the door
+        textbutton "Walk further" action Jump("walk")
+
+screen right_exit_menu1():
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 65)                                 # inner padding
+        xpos 1000  #  ← adjust these two numbers
+        ypos 880      #  ← until the box sits right over the door
+        textbutton "Go outside" action Jump("outside_exit")
+
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 65)                                 # inner padding
+        xpos 1250     #  ← adjust these two numbers
+        ypos 1280        #  ← until the box sits right over the door
+        textbutton "Walk Back" action Jump("garden_view_menu")
+
+screen fire_exit_inside_menu1():
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding(20, 65)
+        xpos 650
+        ypos 750
+        textbutton "Go inside" action Jump("right_hall_forward3")
+
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding(20, 65)
+        xpos 1380
+        ypos 750
+        textbutton "Garden" action Jump("garden_view2")
+
 
 screen right_hall_menu3():
     frame:
@@ -1945,9 +2051,10 @@ screen left_hall_menu():
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 55)
-        xpos 1250
-        ypos 500
+        xpos 1500
+        ypos 800
         textbutton "Walk Further" action Jump("avrhall")
+    
 
 screen left_hallcorner_menu():
 
@@ -1955,14 +2062,33 @@ screen left_hallcorner_menu():
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 55)
-        xpos 1200
-        ypos 1200
+        xpos 1100
+        ypos 1300
         textbutton "Walk back" action Jump("inside_building")
 
-    # ── Move Forward ───────────────────────────────────────────────────────
+    # ── AVR Inside ───────────────────────────────────────────────────────
     frame:
         background Frame("gui/nav_box.png", 15, 15)
         padding (20, 55)
-        xpos 1250
-        ypos 500
+        xpos 680
+        ypos 600
         textbutton "AVR" action Jump("avrdor")
+
+    
+    # ── AVR Inside ───────────────────────────────────────────────────────
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 55)
+        xpos 900
+        ypos 700
+        textbutton "Walk Further" action Jump("walk")
+    
+    # ── HIDE OUT ───────────────────────────────────────────────────────
+    frame:
+        background Frame("gui/nav_box.png", 15, 15)
+        padding (20, 55)
+        xpos 1120
+        ypos 500
+        textbutton "Hide Out" action Jump("avrhall")
+    
+    
